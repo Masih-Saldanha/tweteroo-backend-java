@@ -7,20 +7,25 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Entity
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class Tweete {
     public Tweete(TweeteDTO data) {
         this.username = data.username();
+        this.avatar = data.avatar();
         this.tweet = data.tweet();
     }
 
     public TweeteDTO clone() {
-        return new TweeteDTO(username, tweet);
+        return new TweeteDTO(username, avatar, tweet);
     }
 
     @Id
